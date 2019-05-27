@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">ScanNF</string>
     <string name="main_email">Digite seu e-mail</string>
+    <string name="singup_email">Digite seu e-mail</string>
     <string name="main_pass">Digite sua senha</string>
+    <string name="singup_pass">Digite sua senha</string>
+    <string name="singup_pass_repeat">Digite novamente sua senha</string>
+    <string name="singup_full_name">Digite seu nome completo</string>
     <string name="main_btnLogin">Login</string>
     <string name="main_btnCadastro">Cadastrar</string>
+    <string name="singup_head">Cadastro</string>
 </resources>

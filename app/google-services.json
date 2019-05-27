@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "870160875873",
+    "firebase_url": "https://codscan-nf.firebaseio.com",
+    "project_id": "codscan-nf",
+    "storage_bucket": "codscan-nf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870160875873:android:7c7fffcddbfec3dd",
+        "android_client_info": {
+          "package_name": "com.example.scannf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870160875873-son2ur1epk10j8mbp93nspshm3tf1qtf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scannf",
+            "certificate_hash": "4849595c6a5c2c890c26674fd97f25580e825691"
+          }
+        },
+        {
+          "client_id": "870160875873-mebis4jpt7s83k4dul264fnafkiquntu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr8Z9DdlDYem1AEZHNSouyBCRyOWQbPUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870160875873-mebis4jpt7s83k4dul264fnafkiquntu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
