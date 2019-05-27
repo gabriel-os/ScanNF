@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ScanNF</string>
+    <string name="main_email">Digite seu e-mail</string>
+    <string name="main_pass">Digite sua senha</string>
+    <string name="main_btnLogin">Login</string>
+    <string name="main_btnCadastro">Cadastrar</string>
 </resources>
