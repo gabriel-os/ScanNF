@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -32,13 +32,13 @@
             tools:layout_editor_absoluteY="34dp" />
 
         <EditText
-            android:id="@+id/signupName"
+            android:id="@+id/signup_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="80dp"
             android:backgroundTint="@color/colorAccentSecundary"
-            android:drawableLeft="@drawable/ic_email"
+            android:drawableLeft="@drawable/ic_person"
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/singup_full_name"
@@ -46,7 +46,7 @@
             android:textColorHint="@color/colorAccentPastel" />
 
         <EditText
-            android:id="@+id/signupEmail"
+            android:id="@+id/signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -60,7 +60,7 @@
             android:textColorHint="@color/colorAccentPastel" />
 
         <EditText
-            android:id="@+id/singupPassword"
+            android:id="@+id/singup_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -74,7 +74,7 @@
             android:textColorHint="@color/colorAccentPastel" />
 
         <EditText
-            android:id="@+id/singupPasswordRepeat"
+            android:id="@+id/singup_password_repeat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -88,7 +88,7 @@
             android:textColorHint="@color/colorAccentPastel" />
 
         <Button
-            android:id="@+id/btnCadastro"
+            android:id="@+id/singup_btn_sing_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
