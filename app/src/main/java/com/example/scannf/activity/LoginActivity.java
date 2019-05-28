@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     public void openActivity() {
         Intent i = new Intent(this, SingUpActivity.class);
         startActivity(i);
+        //TODO intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
     public void openMenu() {
