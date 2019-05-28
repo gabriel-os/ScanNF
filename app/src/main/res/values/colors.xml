@@ -5,4 +5,6 @@
     <color name="colorAccent">#FFEE3D</color>
     <color name="colorAccentPastel">#FDD835</color>
     <color name="colorAccentSecundary">#969696</color>
+    <color name="dark">#00052B</color>
+    <color name="black">#000</color>
 </resources>

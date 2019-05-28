@@ -9,4 +9,6 @@
     <string name="main_btnLogin">Login</string>
     <string name="main_btnCadastro">Cadastrar</string>
     <string name="singup_head">Cadastro</string>
+    <string name="open_drawer">Abrir</string>
+    <string name="close_drawer">Fechar</string>
 </resources>

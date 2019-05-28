@@ -1,8 +1,8 @@
 package com.example.scannf;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -44,7 +44,7 @@ public class SingUpActivity extends AppCompatActivity {
     public void singup() {
         etEmail = findViewById(R.id.signup_email);
         etPass = findViewById(R.id.singup_password);
-        mAuth.createUserWithEmailAndPassword("gabriel.o_santos@yahoo.com.br", "189440")
+        mAuth.createUserWithEmailAndPassword(etEmail.getText().toString(), etPass.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -52,6 +52,8 @@ public class SingUpActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
+                                    Toast.LENGTH_SHORT).show();
 
                         } else {
                             // If sign in fails, display a message to the user.
