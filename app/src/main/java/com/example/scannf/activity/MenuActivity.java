@@ -1,4 +1,4 @@
-package com.example.scannf;
+package com.example.scannf.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.scannf.activity.ScanActivity;
+import com.example.scannf.R;
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         toolbar = findViewById(R.id.toolbar_menu);
         setSupportActionBar(toolbar);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerLayout = findViewById(R.id.drawerLayout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -40,7 +40,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void openReader() {
-        Intent i = new Intent(this, ScanActivity.class);
+        Intent i = new Intent(this, InfoNFActivity.class);
         startActivity(i);
     }
 }

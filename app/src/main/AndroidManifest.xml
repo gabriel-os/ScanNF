@@ -14,7 +14,7 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/WithoutBar">
             <intent-filter>
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SingUpActivity"
+            android:name=".activity.SingUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/WithoutBar">
             <intent-filter>
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MenuActivity"
+            android:name=".activity.MenuActivity"
             android:screenOrientation="portrait"
             android:theme="@style/WithoutBar">
             <intent-filter>
@@ -46,6 +46,17 @@
 
         <activity
             android:name=".activity.ScanActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/WithoutBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.InfoNFActivity"
             android:screenOrientation="portrait"
             android:theme="@style/WithoutBar">
             <intent-filter>

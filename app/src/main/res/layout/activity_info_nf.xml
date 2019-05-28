@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_info_nf"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/lbl_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_info_nf"
+        android:layout_marginTop="30dp"
+        android:text="@string/num_nota_title"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/lbl_titulo"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/txt_num_nf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view1"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="18dp"
+        android:text="Erro"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/txt_num_nf"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="18dp"
+        android:background="@color/colorAccent" />
+
+
+</RelativeLayout>

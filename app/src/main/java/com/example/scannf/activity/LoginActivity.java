@@ -1,10 +1,12 @@
-package com.example.scannf;
+package com.example.scannf.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.scannf.R;
 
 public class LoginActivity extends AppCompatActivity {
     private Button btnSingUp, btnLogin;

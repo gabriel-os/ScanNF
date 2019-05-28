@@ -11,4 +11,8 @@
     <string name="singup_head">Cadastro</string>
     <string name="open_drawer">Abrir</string>
     <string name="close_drawer">Fechar</string>
+    <string name="turn_off_flashlight">Ligar Flash</string>
+    <string name="turn_on_flashlight">Desligar Flash</string>
+    <string name="num_nota_title">Número da nota</string>
+
 </resources>
