@@ -1,34 +1,52 @@
 package com.example.scannf.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.scannf.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     private Button btnSingUp, btnLogin;
     private TextView txtRecoveryPass;
+    private EditText etEmail, etPass;
+    private FirebaseAuth mAuth;
+    private String email, pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Context context;
-
 
         btnSingUp = findViewById(R.id.main_btn_sing_up);
         btnLogin = findViewById(R.id.main_btn_login);
         txtRecoveryPass = findViewById(R.id.txt_recovery_pass);
+        etEmail = findViewById(R.id.mainEmail);
+        etPass = findViewById(R.id.mainPassword);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        if (confirmLogged()) {
+            openMenu();
+        }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMenu();
+                email = etEmail.getText().toString();
+                pass = etPass.getText().toString();
+                login(email, pass);
             }
         });
         btnSingUp.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         txtRecoveryPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                login("", "");
             }
         });
     }
@@ -49,14 +67,44 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public void login(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("", "signInWithEmail:success");
+                            openMenu();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        // ...
+                    }
+                });
+    }
+
     public void openSingUp() {
         Intent i = new Intent(this, SingUpActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
-        //TODO intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+    public boolean confirmLogged() {
+        boolean check = false;
+
+
+        return false;
     }
 
     public void openMenu() {
         Intent i = new Intent(this, MenuActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }
 

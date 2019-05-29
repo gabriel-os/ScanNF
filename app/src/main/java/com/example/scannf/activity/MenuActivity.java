@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scannf.R;
@@ -21,21 +22,25 @@ import com.google.zxing.integration.android.IntentResult;
 public class MenuActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
     private FloatingActionButton btn_reader_code;
+    private NavigationView nvLeft;
+    private TextView tvName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
         toolbar = findViewById(R.id.toolbar_menu);
         btn_reader_code = findViewById(R.id.menu_reader_code);
         drawerLayout = findViewById(R.id.drawerLayout);
+        nvLeft = findViewById(R.id.navView);
 
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
+
         btn_reader_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +51,10 @@ public class MenuActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
+
+        View header = nvLeft.getHeaderView(0);
+        tvName = header.findViewById(R.id.nav_header_name);
+        tvName.setText("Ola");
     }
 
     @Override

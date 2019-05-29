@@ -2,7 +2,9 @@ package com.example.scannf.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class CRUDDatabase {
     private SQLiteDatabase db;
@@ -15,23 +17,46 @@ public class CRUDDatabase {
 
     }
 
-    public String insertDataUser(String titulo, String autor, String editora) {
+    public void insertDataUser(String uid, String name) {
         ContentValues valores;
         long resultado;
 
         valores = new ContentValues();
-        valores.put(StartDatabase.UID_USER, titulo);
-        valores.put(StartDatabase.NAME_USER, autor);
-        valores.put(StartDatabase.CAR_USER, editora);
-        valores.put(StartDatabase.PASS_USER, editora);
+        valores.put(StartDatabase.UID_USER, uid);
+        valores.put(StartDatabase.NAME_USER, name);
+
 
         resultado = db.insert(StartDatabase.TABLE_USER, null, valores);
         db.close();
 
         if (resultado == -1)
-            return "Erro ao inserir registro";
+            Log.v("TESTE", "N");
         else
-            return "Registro Inserido com sucesso";
+            Log.v("TESTE", "F");
 
     }
+
+    public String getName() {
+        Cursor cursor;
+        String[] campos = {bd.NAME_USER};
+        db = bd.getReadableDatabase();
+
+        //cursor =db.query(bd.TABLE_USER, campos, null, null, null, null, null, null);
+
+        cursor = db.rawQuery("SELECT name FROM users", null);
+
+        cursor.moveToFirst();
+
+
+        String name = cursor.getString(cursor.getColumnIndex("name"));
+
+        StringBuilder conversor = new StringBuilder();
+        conversor.append(name);
+        db.close();
+        Log.v("TESTE2", conversor.toString());
+        return conversor.toString();
+
+    }
+
+
 }

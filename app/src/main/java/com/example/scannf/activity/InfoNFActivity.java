@@ -9,7 +9,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.scannf.R;
@@ -22,6 +24,7 @@ public class InfoNFActivity extends AppCompatActivity {
     private Button btnSave;
     private Toolbar toolbar;
     private String numNf;
+    private Spinner dropdown;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,9 @@ public class InfoNFActivity extends AppCompatActivity {
         txtNumNF = findViewById(R.id.txt_num_nf);
         toolbar = findViewById(R.id.toolbar_info_nf);
         btnSave = findViewById(R.id.info_nf_save);
+        dropdown = findViewById(R.id.spinner);
+
+        String[] items = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
         setSupportActionBar(toolbar);
 
@@ -41,6 +47,9 @@ public class InfoNFActivity extends AppCompatActivity {
         txtNumNF.setText(numNf);
 
         adviceRead();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +72,9 @@ public class InfoNFActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
-        myRef.child("nota_fiscal/" + numNf.toString()).setValue("CE002");
+        myRef.child("nota_fiscal/" + numNf + "/carro").setValue("CE002");
+        myRef.child("nota_fiscal/" + numNf + "/status").setValue("CE002");
+        myRef.child("nota_fiscal/" + numNf + "/motivo").setValue("CE002");
     }
 
     public void backMenu() {

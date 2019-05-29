@@ -9,15 +9,13 @@ public class StartDatabase extends SQLiteOpenHelper {
     static final String TABLE_USER = "users";
     static final String UID_USER = "uid";
     static final String NAME_USER = "name";
-    static final String CAR_USER = "car";
-    static final String PASS_USER = "pass";
     static final int VERSION = 1;
 
     static final String TABLE_NF = "nf";
     static final String NUMERO_NF = "numNota";
     static final String DT_RECORD = "dtRecord";
     static final String HR_RECORD = "hrRecord";
-    static final String EDIT_NF = "hrRecord";
+    static final String EDIT_NF = "editNF";
 
     public StartDatabase(Context context) {
         super(context, USER_DB, null, VERSION);
@@ -27,10 +25,9 @@ public class StartDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //Create a user table
         String sql = "CREATE TABLE " + TABLE_USER + "("
-                + UID_USER + " text primary key,"
-                + NAME_USER + " text,"
-                + CAR_USER + " text,"
-                + PASS_USER + " text"
+                + UID_USER + " text,"
+                + NAME_USER + " text"
+
                 + ")";
         db.execSQL(sql);
 

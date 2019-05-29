@@ -1,5 +1,6 @@
 package com.example.scannf.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +38,6 @@ public class SingUpActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-
         btnSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,8 +57,8 @@ public class SingUpActivity extends AppCompatActivity {
 
         if (validationInfo(email, name, pass, repeatPass)) {
             insertFirebase(name, email, pass);
-
-
+            Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -117,6 +117,7 @@ public class SingUpActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Log.d(TAG, "User profile updated.");
+                                                openMenu();
                                             }
                                         }
                                     });
@@ -133,9 +134,16 @@ public class SingUpActivity extends AppCompatActivity {
                 });
     }
 
+    public void insertDAO() {
+
+    }
     public void showToast(String message, int duration) {
         Toast toast = Toast.makeText(this, message, duration);
         toast.show();
     }
 
+    public void openMenu() {
+        Intent i = new Intent(this, MenuActivity.class);
+        startActivity(i);
+    }
 }

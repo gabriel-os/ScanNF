@@ -16,4 +16,6 @@
     <string name="num_nota_title">Número da nota</string>
     <string name="recovery_text">Esqueci minha senha</string>
     <string name="info_nf_carro_entrega">Carro entrega</string>
+    <string name="info_nf_status">Status</string>
+    <string name="info_nf_motivo">Motivo</string>
 </resources>
