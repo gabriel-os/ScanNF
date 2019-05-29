@@ -9,13 +9,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.scannf.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class InfoNFActivity extends AppCompatActivity {
     private TextView txtNumNF;
     private Intent in;
+    private Button btnSave;
     private Toolbar toolbar;
     private String numNf;
     @Override
@@ -24,6 +28,7 @@ public class InfoNFActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info_nf);
         txtNumNF = findViewById(R.id.txt_num_nf);
         toolbar = findViewById(R.id.toolbar_info_nf);
+        btnSave = findViewById(R.id.info_nf_save);
 
         setSupportActionBar(toolbar);
 
@@ -44,8 +49,21 @@ public class InfoNFActivity extends AppCompatActivity {
             }
         });
 
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveNf();
+            }
+        });
 
+    }
 
+    public void saveNf() {
+        String[] nf = {"CE002", "29/05/2019"};
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        myRef.child("nota_fiscal/" + numNf.toString()).setValue("CE002");
     }
 
     public void backMenu() {

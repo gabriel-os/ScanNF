@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "870160875873",
-    "firebase_url": "https://codscan-nf.firebaseio.com",
-    "project_id": "codscan-nf",
-    "storage_bucket": "codscan-nf.appspot.com"
+    "project_number": "207658230223",
+    "firebase_url": "https://scscan-nf.firebaseio.com",
+    "project_id": "scscan-nf",
+    "storage_bucket": "scscan-nf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:870160875873:android:7c7fffcddbfec3dd",
+        "mobilesdk_app_id": "1:207658230223:android:7c7fffcddbfec3dd",
         "android_client_info": {
           "package_name": "com.example.scannf"
         }
       },
       "oauth_client": [
         {
-          "client_id": "870160875873-son2ur1epk10j8mbp93nspshm3tf1qtf.apps.googleusercontent.com",
+          "client_id": "207658230223-gq99agen4ndq84jg49g6agh1i6i2ba6d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.scannf",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "870160875873-mebis4jpt7s83k4dul264fnafkiquntu.apps.googleusercontent.com",
+          "client_id": "207658230223-qj2u69447jk1lip7smnv76jb2ice470d.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBr8Z9DdlDYem1AEZHNSouyBCRyOWQbPUU"
+          "current_key": "AIzaSyDlV8jzWgq9-A7TKHBstNppZ8vd1kVAwbY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "870160875873-mebis4jpt7s83k4dul264fnafkiquntu.apps.googleusercontent.com",
+              "client_id": "207658230223-qj2u69447jk1lip7smnv76jb2ice470d.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

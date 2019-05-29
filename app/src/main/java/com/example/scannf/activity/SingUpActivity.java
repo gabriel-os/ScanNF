@@ -31,6 +31,7 @@ public class SingUpActivity extends AppCompatActivity {
         btnSingUp = findViewById(R.id.singup_btn_sing_up);
         etEmail = findViewById(R.id.signup_email);
         etPass = findViewById(R.id.singup_password);
+
         mAuth = FirebaseAuth.getInstance();
 
         btnSingUp.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +54,7 @@ public class SingUpActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
                             Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
                                     Toast.LENGTH_SHORT).show();
 

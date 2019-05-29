@@ -52,4 +52,58 @@
         android:layout_marginTop="18dp"
         android:background="@color/colorAccent" />
 
+    <TextView
+        android:id="@+id/lbl_titulo_carro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view2"
+        android:layout_marginTop="50dp"
+        android:text="@string/info_nf_carro_entrega"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/lbl_titulo_carro"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/txt_carro_entrega"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view3"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="10dp"
+        android:text="CE002"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/txt_carro_entrega"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/info_nf_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorAccent"
+        android:text="Salvar Nota"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
 </RelativeLayout>

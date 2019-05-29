@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0000BE</color>
-    <color name="colorPrimaryDark">#00008c</color>
-    <color name="colorPrimaryPastel">#5f38f2</color>
+    <color name="colorPrimary">#00367b</color>
+    <color name="colorPrimaryDark">#00124e</color>
+    <color name="colorPrimaryPastel">#465fab</color>
     <!--Transparent color is #(00)<- opacity + 000000 -->
-    <color name="colorPrimaryTransparent">#2000008c</color>
+    <color name="colorPrimaryTransparent">#6000008c</color>
 
-    <color name="colorAccent">#FFEE3D</color>
-    <color name="colorAccentPastel">#ffff74</color>
+    <color name="colorAccent">#fdbb2f</color>
+    <color name="colorAccentPastel">#ffed64</color>
     <color name="colorAccentDark">#c8bc00</color>
 
     <color name="colorAccentSecundary">#969696</color>

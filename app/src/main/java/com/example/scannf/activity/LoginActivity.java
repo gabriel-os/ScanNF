@@ -40,7 +40,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void openMenu() {
+
+
         Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
     }
+
+
 }
+
