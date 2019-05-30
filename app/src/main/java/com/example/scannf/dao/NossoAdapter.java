@@ -3,6 +3,7 @@ package com.example.scannf.dao;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,12 @@ public class NossoAdapter extends RecyclerView.Adapter {
         holder.status.setText(nota.getStatus());
         holder.motivo.setText(nota.getMotivo());
         holder.horario.setText(nota.getHorario());
+        holder.btn_line.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("TESTE", "FOOOOOOOOOOOOOOOOOI");
+            }
+        });
     }
 
     @Override
