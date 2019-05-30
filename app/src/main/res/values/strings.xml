@@ -18,4 +18,6 @@
     <string name="info_nf_carro_entrega">Carro entrega</string>
     <string name="info_nf_status">Status</string>
     <string name="info_nf_motivo">Motivo</string>
+    <string name="menu_sair">Sair</string>
+    <string name="menu_edit_currier">Editar carro de entrega</string>
 </resources>

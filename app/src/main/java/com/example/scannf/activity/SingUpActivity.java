@@ -117,12 +117,13 @@ public class SingUpActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Log.d(TAG, "User profile updated.");
-                                                openMenu();
+
                                             }
                                         }
                                     });
                             Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
                                     Toast.LENGTH_SHORT).show();
+                            openMenu();
                         } else {
 
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

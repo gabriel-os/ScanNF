@@ -8,6 +8,9 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -15,8 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scannf.R;
+import com.example.scannf.dao.NossoAdapter;
+import com.example.scannf.dao.NotaFiscal;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -25,6 +35,10 @@ public class MenuActivity extends AppCompatActivity {
     private FloatingActionButton btn_reader_code;
     private NavigationView nvLeft;
     private TextView tvName;
+    private RecyclerView recyclerView;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
 
 
     @Override
@@ -36,6 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         btn_reader_code = findViewById(R.id.menu_reader_code);
         drawerLayout = findViewById(R.id.drawerLayout);
         nvLeft = findViewById(R.id.navView);
+        recyclerView = findViewById(R.id.rc_notas);
 
         setSupportActionBar(toolbar);
 
@@ -52,9 +67,37 @@ public class MenuActivity extends AppCompatActivity {
 
         toggle.syncState();
 
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
         View header = nvLeft.getHeaderView(0);
         tvName = header.findViewById(R.id.nav_header_name);
-        tvName.setText("Ola");
+        tvName.setText(currentUser.getDisplayName());
+
+
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        recyclerView.setItemAnimator(itemAnimator);
+
+        List<NotaFiscal> nf = new ArrayList<>();
+
+
+        nf.add(new NotaFiscal("255579/37", "Refaturada", "10", "10:15"));
+        nf.add(new NotaFiscal("2545579/37", "Cancelada", "2", "10:15"));
+        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
+        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
+        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
+        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
+        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
+        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
+
+        recyclerView.setAdapter(new NossoAdapter(nf, this));
+
+        RecyclerView.LayoutManager layout = new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(layout);
     }
 
     @Override
@@ -96,4 +139,6 @@ public class MenuActivity extends AppCompatActivity {
         i.putExtra("num_nf", nf);
         startActivity(i);
     }
+
+
 }

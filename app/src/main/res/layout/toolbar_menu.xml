@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark">
@@ -12,13 +13,26 @@
         android:background="@color/colorPrimaryDark" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/menu_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_menu"
+        android:layout_below="@id/toolbar_menu"
+        android:paddingTop="8dp"
+        android:text="Notas Fiscais lidas hoje!"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_notas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/menu_title"
         android:layout_centerInParent="true"
-        android:layout_marginTop="44dp"
-        android:text="Bem-Vindo!" />
+        android:scrollbars="vertical"
+
+        tools:listitem="@layout/main_line_view" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/menu_reader_code"
@@ -31,6 +45,7 @@
         android:background="@color/colorAccentPastel"
         android:clickable="true"
         app:maxImageSize="35dp"
-        app:srcCompat="@drawable/ic_barcode" />
+        app:srcCompat="@drawable/ic_barcode"
+        tools:ignore="VectorDrawableCompat" />
 
 </RelativeLayout>
