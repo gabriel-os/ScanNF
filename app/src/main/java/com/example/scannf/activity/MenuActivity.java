@@ -1,18 +1,23 @@
 package com.example.scannf.activity;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,13 +34,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private FloatingActionButton btn_reader_code;
     private NavigationView nvLeft;
     private TextView tvName;
     private RecyclerView recyclerView;
+    private DrawerLayout mDrawerLayout;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -51,7 +57,7 @@ public class MenuActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         nvLeft = findViewById(R.id.navView);
         recyclerView = findViewById(R.id.rc_notas);
-
+        mDrawerLayout = findViewById(R.id.drawerLayout);
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
@@ -73,6 +79,7 @@ public class MenuActivity extends AppCompatActivity {
         View header = nvLeft.getHeaderView(0);
         tvName = header.findViewById(R.id.nav_header_name);
         tvName.setText(currentUser.getDisplayName());
+
 
 
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
@@ -98,6 +105,9 @@ public class MenuActivity extends AppCompatActivity {
                 LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(layout);
+
+        nvLeft.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -141,4 +151,47 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+
+            case R.id.nav_item_one: {
+                Log.v("EDIT", "FOOOOOOOOOOOOOOOOOOOOI");
+                break;
+            }
+            case R.id.nav_item_two: {
+                adciveLogoff();
+            }
+        }
+
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    public void onBackPressed() {
+        adciveLogoff();
+    }
+
+    public void adciveLogoff() {
+        new AlertDialog.Builder(MenuActivity.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("ScanNF - Sair")
+                .setMessage("Você tem certeza que deseja sair?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mAuth.signOut();
+                        backMenu();
+                    }
+                })
+                .setNegativeButton("Não", null)
+                .show();
+    }
+
+    public void backMenu() {
+        Intent i = new Intent(MenuActivity.this, LoginActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        finish();
+    }
 }

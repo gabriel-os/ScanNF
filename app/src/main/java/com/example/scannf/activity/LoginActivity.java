@@ -1,9 +1,12 @@
 package com.example.scannf.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -58,14 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         txtRecoveryPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login("", "");
+                resetPass();
             }
         });
     }
 
-    public void openRecovery() {
 
-    }
 
     public void login(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
@@ -79,8 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Algo deu errado\nVerifique sua senha e tente novamente",
+                                    Toast.LENGTH_LONG).show();
 
                         }
 
@@ -97,15 +98,65 @@ public class LoginActivity extends AppCompatActivity {
 
     public boolean confirmLogged() {
         boolean check = false;
+        if (mAuth.getCurrentUser() != null) {
+            etEmail.setText(mAuth.getCurrentUser().getEmail());
+            etPass.setFocusable(true);
+            check = true;
+        }
 
-
-        return false;
+        return check;
     }
 
     public void openMenu() {
         Intent i = new Intent(this, MenuActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
+    }
+
+    public void fireReset(String email) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Acabamos de enviar a recuperação de senha.\nVerifique seu e-mail",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Algo deu errado\nVerifique seu e-mail e tente novamente",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    public void resetPass() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Digite seu e-mail");
+
+
+        final EditText input = new EditText(this);
+
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                fireReset(input.getText().toString());
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
     }
 
 

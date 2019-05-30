@@ -11,20 +11,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.scannf.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class InfoNFActivity extends AppCompatActivity {
-    private TextView txtNumNF;
+    private TextView txtNumNF, titulo;
     private Intent in;
+    private View vv;
     private Button btnSave;
     private Toolbar toolbar;
     private String numNf;
     private Spinner dropdown;
+    private RadioGroup rg;
+    private RadioButton rbEntregue, rbCancelado, rbRefaturado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +43,12 @@ public class InfoNFActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_info_nf);
         btnSave = findViewById(R.id.info_nf_save);
         dropdown = findViewById(R.id.spinner);
+        rbEntregue = findViewById(R.id.r_entregue);
+        rbCancelado = findViewById(R.id.r_cancelado);
+        rbRefaturado = findViewById(R.id.r_refaturado);
+        vv = findViewById(R.id.view6);
+        rg = findViewById(R.id.radioStatus);
+        titulo = findViewById(R.id.lbl_titulo_motivo);
 
         String[] items = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
@@ -65,16 +81,56 @@ public class InfoNFActivity extends AppCompatActivity {
             }
         });
 
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.r_cancelado) {
+                    vv.setVisibility(View.VISIBLE);
+                    titulo.setVisibility(View.VISIBLE);
+                    dropdown.setVisibility(View.VISIBLE);
+                } else if (checkedId == R.id.r_refaturado) {
+                    vv.setVisibility(View.VISIBLE);
+                    titulo.setVisibility(View.VISIBLE);
+                    dropdown.setVisibility(View.VISIBLE);
+                } else if (checkedId == R.id.r_entregue) {
+                    vv.setVisibility(View.INVISIBLE);
+                    titulo.setVisibility(View.INVISIBLE);
+                    dropdown.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
     }
 
     public void saveNf() {
-        String[] nf = {"CE002", "29/05/2019"};
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat hf = new SimpleDateFormat("HH:mm");
+
+        String date = df.format(Calendar.getInstance().getTime());
+        String hour = hf.format(Calendar.getInstance().getTime());
+        String status = "";
+        String motivo = dropdown.getSelectedItem().toString();
+
+        if (rbEntregue.isChecked()) {
+            status = "Entregue";
+            motivo = "-";
+        } else if (rbCancelado.isChecked()) {
+            status = "Cancelado";
+        } else if (rbRefaturado.isChecked()) {
+            status = "Refaturado";
+        }
 
         myRef.child("nota_fiscal/" + numNf + "/carro").setValue("CE002");
-        myRef.child("nota_fiscal/" + numNf + "/status").setValue("CE002");
-        myRef.child("nota_fiscal/" + numNf + "/motivo").setValue("CE002");
+        myRef.child("nota_fiscal/" + numNf + "/status").setValue(status);
+        myRef.child("nota_fiscal/" + numNf + "/motivo").setValue(motivo);
+        myRef.child("nota_fiscal/" + numNf + "/date").setValue(date);
+        myRef.child("nota_fiscal/" + numNf + "/time").setValue(hour);
+
+        Toast.makeText(InfoNFActivity.this, "Nota cadastrada com sucesso!!",
+                Toast.LENGTH_LONG).show();
+        backMenu();
     }
 
     public void backMenu() {

@@ -4,7 +4,6 @@
     android:layout_height="wrap_content">
     <group>
         <item
-
             android:id="@+id/nav_item_one"
             android:icon="@android:drawable/ic_menu_edit"
             android:title="@string/menu_edit_currier" />

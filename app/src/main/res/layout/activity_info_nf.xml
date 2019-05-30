@@ -139,6 +139,7 @@
         android:layout_below="@id/radioStatus"
         android:layout_marginTop="20dp"
         android:text="@string/info_nf_motivo"
+        android:visibility="invisible"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="20dp" />
@@ -150,6 +151,7 @@
         android:layout_below="@+id/lbl_titulo_motivo"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
+        android:visibility="invisible"
         android:background="@color/colorAccent" />
 
 
@@ -161,6 +163,7 @@
         android:textAlignment="center"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
+        android:visibility="invisible"
         android:layout_marginRight="50dp"
         android:spinnerMode="dropdown" />
 
