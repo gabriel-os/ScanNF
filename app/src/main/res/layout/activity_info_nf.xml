@@ -11,10 +11,20 @@
         android:background="@color/colorPrimaryDark" />
 
     <TextView
+        android:id="@+id/title_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_info_nf"
+        android:layout_marginTop="10dp"
+        android:text="Cadastro de notas"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp" />
+    <TextView
         android:id="@+id/lbl_titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar_info_nf"
+        android:layout_below="@id/title_info"
         android:layout_marginTop="30dp"
         android:text="@string/num_nota_title"
         android:textAlignment="center"
@@ -41,7 +51,7 @@
         android:text="Erro"
         android:textAlignment="center"
         android:textColor="#fff"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="bold" />
 
 
@@ -74,7 +84,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:text="CE002"
+        android:text="Erro"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="20dp"
@@ -114,6 +124,7 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="Entregue"
+            android:textSize="18sp"
             android:textColor="#fff" />
 
         <RadioButton
@@ -121,6 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancelado"
+            android:textSize="18sp"
             android:textColor="#fff" />
 
         <RadioButton
@@ -128,6 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Refaturado"
+            android:textSize="18sp"
             android:textColor="#fff" />
 
     </RadioGroup>
@@ -176,13 +189,9 @@
         android:text="Salvar Nota"
         android:layout_below="@id/spinner"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
         android:textColor="#000"
         android:textStyle="bold" />
-
-
-    <!--android:layout_below="@+id/radioStatus"-->
-
 
 </RelativeLayout>

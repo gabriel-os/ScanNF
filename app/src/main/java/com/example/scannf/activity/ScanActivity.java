@@ -1,5 +1,6 @@
 package com.example.scannf.activity;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,17 +25,12 @@ public class ScanActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
 
-        //Initialize barcode scanner view
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
 
-        //set torch listener
         barcodeScannerView.setTorchListener(this);
 
-        //switch flashlight button
         switchFlashlightButton = findViewById(R.id.switch_flashlight);
 
-        // if the device does not have flashlight in its camera,
-        // then remove the switch flashlight button...
         if (!hasFlash()) {
             switchFlashlightButton.setVisibility(View.GONE);
         } else {
@@ -46,18 +42,11 @@ public class ScanActivity extends AppCompatActivity implements
             });
         }
 
-        //start capture
         capture = new CaptureManager(this, barcodeScannerView);
         capture.initializeFromIntent(getIntent(), savedInstanceState);
         capture.decode();
     }
 
-
-    /**
-     * Check if the device's camera has a Flashlight.
-     *
-     * @return true if there is Flashlight, otherwise false.
-     */
     private boolean hasFlash() {
         return getApplicationContext().getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
@@ -111,6 +100,12 @@ public class ScanActivity extends AppCompatActivity implements
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return barcodeScannerView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 

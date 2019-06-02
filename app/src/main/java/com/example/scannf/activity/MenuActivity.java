@@ -72,13 +72,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
 
-        btn_reader_code.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openReader();
-            }
-        });
-
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
@@ -104,6 +97,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(layout);
 
         nvLeft.setNavigationItemSelectedListener(this);
+
+        btn_reader_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openReader();
+            }
+        });
 
     }
 
@@ -153,7 +153,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         for (DataSnapshot postSnapshot : ds.getChildren()) {
             String nota, status, motivo, horario;
             nota = postSnapshot.getKey();
-            if (!nota.equals("nome")) {
+            if (!nota.equals("nome") && !nota.equals("ultimoCarro") && !nota.equals("diaModificado") && !nota.equals("horaModificado")) {
                 status = postSnapshot.child("status").getValue(String.class);
                 //Log.v("TESTE", status);
                 motivo = postSnapshot.child("motivo").getValue(String.class);
@@ -161,6 +161,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 nf.add(new NotaFiscal(nota, status, motivo, horario));
             }
         }
+
         recyclerView.setAdapter(new NossoAdapter(nf, this));
     }
 
@@ -171,7 +172,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
-        query = myRef.getDatabase().getReference("nota_fiscal").child(uid);
+        query = myRef.getDatabase().getReference("nota_fiscal").child(uid).orderByChild("time");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -191,7 +192,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
 
             case R.id.nav_item_one: {
-                Log.v("EDIT", "FOOOOOOOOOOOOOOOOOOOOI");
+                openCarSeleciton();
                 break;
             }
             case R.id.nav_item_two: {
@@ -229,4 +230,14 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
         finish();
     }
+
+    public void openCarSeleciton() {
+        Intent i = new Intent(MenuActivity.this, CarSelection.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("edit", "true");
+        startActivity(i);
+        finish();
+
+    }
+
 }

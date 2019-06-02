@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,15 +20,19 @@ import android.widget.Toast;
 
 import com.example.scannf.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class InfoNFActivity extends AppCompatActivity {
-    private TextView txtNumNF, titulo;
+    private TextView txtNumNF, titulo, carrroEntrega;
     private Intent in;
     private View vv;
     private Button btnSave;
@@ -37,6 +42,8 @@ public class InfoNFActivity extends AppCompatActivity {
     private Spinner dropdown;
     private RadioGroup rg;
     private RadioButton rbEntregue, rbCancelado, rbRefaturado;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +58,10 @@ public class InfoNFActivity extends AppCompatActivity {
         vv = findViewById(R.id.view6);
         rg = findViewById(R.id.radioStatus);
         titulo = findViewById(R.id.lbl_titulo_motivo);
+        carrroEntrega = findViewById(R.id.txt_carro_entrega);
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -103,16 +114,17 @@ public class InfoNFActivity extends AppCompatActivity {
                 }
             }
         });
+        getCarro();
 
     }
 
     public void saveNf() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
+
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat hf = new SimpleDateFormat("HH:mm");
         String uid = mAuth.getCurrentUser().getUid();
         String name = mAuth.getCurrentUser().getDisplayName();
+        String carro = carrroEntrega.getText().toString();
 
         String date = df.format(Calendar.getInstance().getTime());
         String hour = hf.format(Calendar.getInstance().getTime());
@@ -129,7 +141,7 @@ public class InfoNFActivity extends AppCompatActivity {
         }
 
         myRef.child("nota_fiscal/" + uid + "/nome").setValue(name);
-        myRef.child("nota_fiscal/" + uid + "/" + numNf + "/carro").setValue("CE002");
+        myRef.child("nota_fiscal/" + uid + "/" + numNf + "/carro").setValue(carro);
         myRef.child("nota_fiscal/" + uid + "/" + numNf + "/status").setValue(status);
         myRef.child("nota_fiscal/" + uid + "/" + numNf + "/motivo").setValue(motivo);
         myRef.child("nota_fiscal/" + uid + "/" + numNf + "/date").setValue(date);
@@ -177,6 +189,32 @@ public class InfoNFActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         v.vibrate(400);
+    }
+
+    public void getCarro() {
+        String uid = mAuth.getCurrentUser().getUid();
+        Query query;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+
+        query = myRef.getDatabase().getReference("nota_fiscal/" + uid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    if (postSnapshot.getKey().equals("ultimoCarro")) {
+                        carrroEntrega.setText(postSnapshot.getValue(String.class));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 }

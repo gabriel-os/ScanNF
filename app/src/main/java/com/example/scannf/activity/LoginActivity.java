@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             Log.d("", "signInWithEmail:success");
-                            openMenu();
+                            openCarSelection();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("", "signInWithEmail:failure", task.getException());
@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
     public void resetPass() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Digite seu e-mail");
+        builder.setTitle("Digite seu e-mail para recuperação");
 
 
         final EditText input = new EditText(this);
@@ -156,6 +156,14 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         builder.show();
+
+    }
+
+    public void openCarSelection() {
+        Intent i = new Intent(this, CarSelection.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("edit", "false");
+        startActivity(i);
 
     }
 

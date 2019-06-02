@@ -47,6 +47,20 @@ public class SingUpActivity extends AppCompatActivity {
 
     }
 
+    public void singupDebug() {
+        String pass, repeatPass, email, name;
+
+        name = etName.getText().toString();
+        email = etEmail.getText().toString();
+        pass = etPass.getText().toString();
+        repeatPass = etRepeatPass.getText().toString();
+
+        if (validationInfo(email, name, pass, repeatPass)) {
+            insertFirebase(name, email, pass);
+            Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
     public void singup() {
         String pass, repeatPass, email, name;
 
@@ -121,9 +135,9 @@ public class SingUpActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
+                            openCarSelection();
                             Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
                                     Toast.LENGTH_SHORT).show();
-                            openMenu();
                         } else {
 
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -135,16 +149,16 @@ public class SingUpActivity extends AppCompatActivity {
                 });
     }
 
-    public void insertDAO() {
-
-    }
     public void showToast(String message, int duration) {
         Toast toast = Toast.makeText(this, message, duration);
         toast.show();
     }
 
-    public void openMenu() {
-        Intent i = new Intent(this, MenuActivity.class);
+
+    public void openCarSelection() {
+        Intent i = new Intent(this, CarSelection.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("edit", "false");
         startActivity(i);
     }
 }
