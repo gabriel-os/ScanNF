@@ -23,8 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="0.5"
             android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:paddingLeft="2dp"
             android:text="Nota Nº"
             android:textColor="@color/black"
@@ -39,8 +39,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:paddingLeft="2dp"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             tools:text="Line 1" />
 

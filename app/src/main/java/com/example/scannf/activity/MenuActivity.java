@@ -27,6 +27,12 @@ import com.example.scannf.dao.NossoAdapter;
 import com.example.scannf.dao.NotaFiscal;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -47,10 +53,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
 
         toolbar = findViewById(R.id.toolbar_menu);
         btn_reader_code = findViewById(R.id.menu_reader_code);
@@ -59,6 +67,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         recyclerView = findViewById(R.id.rc_notas);
         mDrawerLayout = findViewById(R.id.drawerLayout);
         setSupportActionBar(toolbar);
+
+        mAuth = FirebaseAuth.getInstance();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
 
@@ -73,7 +83,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
-        mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
         View header = nvLeft.getHeaderView(0);
@@ -87,19 +96,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         itemAnimator.setRemoveDuration(1000);
         recyclerView.setItemAnimator(itemAnimator);
 
-        List<NotaFiscal> nf = new ArrayList<>();
-
-
-        nf.add(new NotaFiscal("255579/37", "Refaturada", "10", "10:15"));
-        nf.add(new NotaFiscal("2545579/37", "Cancelada", "2", "10:15"));
-        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
-        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
-        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
-        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
-        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
-        nf.add(new NotaFiscal("2545579/37", "Entregue", "-", "10:15"));
-
-        recyclerView.setAdapter(new NossoAdapter(nf, this));
+        getNotas();
 
         RecyclerView.LayoutManager layout = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
@@ -151,6 +148,43 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
+    public void updateNota(DataSnapshot ds) {
+        List<NotaFiscal> nf = new ArrayList<>();
+        for (DataSnapshot postSnapshot : ds.getChildren()) {
+            String nota, status, motivo, horario;
+            nota = postSnapshot.getKey();
+            if (!nota.equals("nome")) {
+                status = postSnapshot.child("status").getValue(String.class);
+                //Log.v("TESTE", status);
+                motivo = postSnapshot.child("motivo").getValue(String.class);
+                horario = postSnapshot.child("time").getValue(String.class);
+                nf.add(new NotaFiscal(nota, status, motivo, horario));
+            }
+        }
+        recyclerView.setAdapter(new NossoAdapter(nf, this));
+    }
+
+    public void getNotas() {
+        List<NotaFiscal> nota = new ArrayList<>();
+        String uid = mAuth.getCurrentUser().getUid();
+        Query query;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        query = myRef.getDatabase().getReference("nota_fiscal").child(uid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                updateNota(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

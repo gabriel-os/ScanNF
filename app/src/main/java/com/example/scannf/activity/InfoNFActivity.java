@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scannf.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,6 +33,7 @@ public class InfoNFActivity extends AppCompatActivity {
     private Button btnSave;
     private Toolbar toolbar;
     private String numNf;
+    private FirebaseAuth mAuth;
     private Spinner dropdown;
     private RadioGroup rg;
     private RadioButton rbEntregue, rbCancelado, rbRefaturado;
@@ -49,6 +51,8 @@ public class InfoNFActivity extends AppCompatActivity {
         vv = findViewById(R.id.view6);
         rg = findViewById(R.id.radioStatus);
         titulo = findViewById(R.id.lbl_titulo_motivo);
+
+        mAuth = FirebaseAuth.getInstance();
 
         String[] items = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
@@ -107,6 +111,8 @@ public class InfoNFActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat hf = new SimpleDateFormat("HH:mm");
+        String uid = mAuth.getCurrentUser().getUid();
+        String name = mAuth.getCurrentUser().getDisplayName();
 
         String date = df.format(Calendar.getInstance().getTime());
         String hour = hf.format(Calendar.getInstance().getTime());
@@ -122,14 +128,16 @@ public class InfoNFActivity extends AppCompatActivity {
             status = "Refaturado";
         }
 
-        myRef.child("nota_fiscal/" + numNf + "/carro").setValue("CE002");
-        myRef.child("nota_fiscal/" + numNf + "/status").setValue(status);
-        myRef.child("nota_fiscal/" + numNf + "/motivo").setValue(motivo);
-        myRef.child("nota_fiscal/" + numNf + "/date").setValue(date);
-        myRef.child("nota_fiscal/" + numNf + "/time").setValue(hour);
+        myRef.child("nota_fiscal/" + uid + "/nome").setValue(name);
+        myRef.child("nota_fiscal/" + uid + "/" + numNf + "/carro").setValue("CE002");
+        myRef.child("nota_fiscal/" + uid + "/" + numNf + "/status").setValue(status);
+        myRef.child("nota_fiscal/" + uid + "/" + numNf + "/motivo").setValue(motivo);
+        myRef.child("nota_fiscal/" + uid + "/" + numNf + "/date").setValue(date);
+        myRef.child("nota_fiscal/" + uid + "/" + numNf + "/time").setValue(hour);
 
         Toast.makeText(InfoNFActivity.this, "Nota cadastrada com sucesso!!",
                 Toast.LENGTH_LONG).show();
+        myRef.keepSynced(true);
         backMenu();
     }
 

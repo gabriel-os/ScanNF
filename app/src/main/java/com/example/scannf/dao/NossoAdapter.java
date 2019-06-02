@@ -34,17 +34,18 @@ public class NossoAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         NossoViewHolder holder = (NossoViewHolder) viewHolder;
-
+        final String teste;
         NotaFiscal nota = nf.get(i);
 
         holder.numNf.setText(nota.getNumeroNota());
         holder.status.setText(nota.getStatus());
         holder.motivo.setText(nota.getMotivo());
         holder.horario.setText(nota.getHorario());
+        teste = (String) holder.horario.getText();
         holder.btn_line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("TESTE", "FOOOOOOOOOOOOOOOOOI");
+                Log.v("TESTE", "FOOOOOOOOOOOOOOOOOI" + teste);
             }
         });
     }
