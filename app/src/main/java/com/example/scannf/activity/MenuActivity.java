@@ -132,7 +132,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         Log.v("***", nf);
         Log.v("***", type);
         if (!type.equals("CODE_128")) {
-            Toast toast = Toast.makeText(this, "O código lido não parece \n ser uma Nota Fiscal(E01) Tente novamente", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, "O código lido não parece \n ser uma Nota Fiscal(E01) Tente novamente",
+                    Toast.LENGTH_LONG);
             toast.show();
         } else {
             openInfoNF(nf);

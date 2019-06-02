@@ -49,6 +49,11 @@
             android:theme="@style/WithoutBar">
         </activity>
 
+        <activity
+            android:name=".activity.CarSelection"
+            android:screenOrientation="portrait"
+            android:theme="@style/WithoutBar"></activity>
+
     </application>
 
 </manifest>

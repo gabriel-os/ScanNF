@@ -20,4 +20,6 @@
     <string name="info_nf_motivo">Motivo</string>
     <string name="menu_sair">Sair</string>
     <string name="menu_edit_currier">Editar carro de entrega</string>
+    <string name="car_select_title">Selecione o carro de entrega</string>
+    <string name="car_select_btn">Salvar</string>
 </resources>

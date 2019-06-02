@@ -54,58 +54,51 @@
             android:src="@drawable/ic_pencil" />
     </LinearLayout>
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp">
+        android:layout_height="60dp"
+        android:columnCount="3"
+        android:rowCount="2">
 
         <TextView
             android:id="@+id/titulo1"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
             android:gravity="center"
-            android:paddingLeft="2dp"
             android:text="Status"
             android:textColor="@color/colorAccent"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/titulo2"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
             android:gravity="center"
-            android:paddingLeft="2dp"
             android:text="Motivo"
             android:textColor="@color/colorAccent"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/titulo3"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
             android:gravity="center"
-            android:paddingLeft="2dp"
             android:text="Horário"
             android:textColor="@color/colorAccent"
+            android:textSize="16sp"
             android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-
 
         <TextView
             android:id="@+id/line_status"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
             android:gravity="center"
-            android:paddingLeft="2dp"
             android:textColor="@color/colorAccent"
             tools:text="Line 2" />
 
@@ -113,9 +106,8 @@
             android:id="@+id/line_reason"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
             android:gravity="center"
-            android:paddingLeft="2dp"
             android:textColor="@color/colorAccent"
             tools:text="Line 3" />
 
@@ -123,13 +115,12 @@
             android:id="@+id/line_hour"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
             android:gravity="center"
-            android:paddingLeft="2dp"
             android:textColor="@color/colorAccent"
-            tools:text="Line 3" />
+            tools:text="Line  3" />
 
-    </LinearLayout>
+    </GridLayout>
 
 
 </LinearLayout>
