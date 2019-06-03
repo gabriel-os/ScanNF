@@ -47,20 +47,6 @@ public class SingUpActivity extends AppCompatActivity {
 
     }
 
-    public void singupDebug() {
-        String pass, repeatPass, email, name;
-
-        name = etName.getText().toString();
-        email = etEmail.getText().toString();
-        pass = etPass.getText().toString();
-        repeatPass = etRepeatPass.getText().toString();
-
-        if (validationInfo(email, name, pass, repeatPass)) {
-            insertFirebase(name, email, pass);
-            Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
-                    Toast.LENGTH_LONG).show();
-        }
-    }
     public void singup() {
         String pass, repeatPass, email, name;
 
@@ -71,8 +57,6 @@ public class SingUpActivity extends AppCompatActivity {
 
         if (validationInfo(email, name, pass, repeatPass)) {
             insertFirebase(name, email, pass);
-            Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
-                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -135,9 +119,10 @@ public class SingUpActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-                            openCarSelection();
+                            //openCarSelection();
                             Toast.makeText(SingUpActivity.this, "Usuario criado com sucesso!",
                                     Toast.LENGTH_SHORT).show();
+                            openCarSelection();
                         } else {
 
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

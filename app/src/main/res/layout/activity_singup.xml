@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_below="@+id/singup_password_repeat"
-            android:background="@color/colorAccentPastel"
+            android:background="@color/colorAccent"
             android:text="@string/main_btnCadastro"
             android:textSize="18dp"
             android:layout_marginTop="60dp"

@@ -68,6 +68,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout = findViewById(R.id.drawerLayout);
         setSupportActionBar(toolbar);
 
+        if (confirmLogged()) {
+            backMenu();
+        }
+
         mAuth = FirebaseAuth.getInstance();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
@@ -145,6 +149,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private void openInfoNF(String nf) {
         Intent i = new Intent(this, InfoNFActivity.class);
         i.putExtra("num_nf", nf);
+        i.putExtra("edit", "false");
         startActivity(i);
     }
 
@@ -238,6 +243,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
         finish();
 
+    }
+
+    public boolean confirmLogged() {
+        boolean check = false;
+        if (mAuth.getCurrentUser() != null) {
+            check = true;
+        }
+
+        return check;
     }
 
 }

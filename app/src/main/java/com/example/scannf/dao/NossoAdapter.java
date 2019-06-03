@@ -1,14 +1,15 @@
 package com.example.scannf.dao;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.scannf.R;
+import com.example.scannf.activity.InfoNFActivity;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class NossoAdapter extends RecyclerView.Adapter {
         NossoViewHolder holder = (NossoViewHolder) viewHolder;
         final String teste;
         NotaFiscal nota = nf.get(i);
+        final NotaFiscal nt = nota;
 
         holder.numNf.setText(nota.getNumeroNota());
         holder.status.setText(nota.getStatus());
@@ -45,7 +47,10 @@ public class NossoAdapter extends RecyclerView.Adapter {
         holder.btn_line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("TESTE", "FOOOOOOOOOOOOOOOOOI" + teste);
+                String num_nf = nt.getNumeroNota();
+                String status = nt.getStatus();
+                String motivo = nt.getMotivo();
+                editNota(num_nf, status, motivo);
             }
         });
     }
@@ -53,6 +58,16 @@ public class NossoAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return nf.size();
+    }
+
+    public void editNota(String num_nf, String status, String motivo) {
+        Intent i = new Intent(context, InfoNFActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("edit", "true");
+        i.putExtra("num_nf", num_nf);
+        i.putExtra("status", status);
+        i.putExtra("motivo", motivo);
+        context.startActivity(i);
     }
 
 }

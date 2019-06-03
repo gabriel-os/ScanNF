@@ -65,22 +65,45 @@ public class InfoNFActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        String[] items = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        String[] items = new String[]{"31", "45", "47", "48", "49", "57", "59", "60", "61"};
 
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
+
         in = getIntent();
         Bundle extras = in.getExtras();
+        if (extras.getString("edit").equals("true")) {
+            txtNumNF.setText(extras.getString("num_nf"));
+            if (extras.getString("status").equals("Cancelado")) {
+                vv.setVisibility(View.VISIBLE);
+                titulo.setVisibility(View.VISIBLE);
+                dropdown.setVisibility(View.VISIBLE);
+                rg.check(R.id.r_cancelado);
+                dropdown.setSelection(adapter.getPosition(extras.getString("motivo")));
+            } else if (extras.getString("status").equals("Refaturado")) {
+                vv.setVisibility(View.VISIBLE);
+                titulo.setVisibility(View.VISIBLE);
+                dropdown.setVisibility(View.VISIBLE);
+                rg.check(R.id.r_refaturado);
+                dropdown.setSelection(adapter.getPosition(extras.getString("motivo")));
+            } else if (extras.getString("status").equals("Entregue")) {
+                vv.setVisibility(View.INVISIBLE);
+                titulo.setVisibility(View.INVISIBLE);
+                dropdown.setVisibility(View.INVISIBLE);
+                rg.check(R.id.r_entregue);
+            }
+
+        }
         numNf = extras.getString("num_nf");
         txtNumNF.setText(numNf);
 
         adviceRead();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
