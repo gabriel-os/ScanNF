@@ -1,6 +1,5 @@
 package com.example.scannf.activity;
 
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,7 +38,6 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -50,9 +48,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +63,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout = findViewById(R.id.drawerLayout);
         setSupportActionBar(toolbar);
 
+        mAuth = FirebaseAuth.getInstance();
+
         if (confirmLogged()) {
             backMenu();
         }
-
-        mAuth = FirebaseAuth.getInstance();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
 
@@ -246,9 +241,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public boolean confirmLogged() {
-        boolean check = false;
+        boolean check = true;
         if (mAuth.getCurrentUser() != null) {
-            check = true;
+            check = false;
         }
 
         return check;

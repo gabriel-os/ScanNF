@@ -27,15 +27,15 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="80dp"
-            android:backgroundTint="@color/colorAccentSecundary"
+            android:backgroundTint="@color/colorAccent"
             android:drawableLeft="@drawable/ic_person"
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/singup_full_name"
             android:inputType="textPersonName"
             android:layout_below="@+id/logoImagem"
-            android:textColor="@color/colorAccentPastel"
-            android:textColorHint="@color/colorAccentPastel" />
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent" />
 
         <EditText
             android:id="@+id/signup_email"
@@ -43,15 +43,15 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/colorAccentSecundary"
+            android:backgroundTint="@color/colorAccent"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/singup_email"
             android:inputType="textEmailAddress"
             android:layout_below="@+id/signup_name"
-            android:textColor="@color/colorAccentPastel"
-            android:textColorHint="@color/colorAccentPastel" />
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent" />
 
         <EditText
             android:id="@+id/singup_password"
@@ -59,15 +59,15 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/colorAccentSecundary"
+            android:backgroundTint="@color/colorAccent"
             android:drawableLeft="@drawable/ic_pass"
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/singup_pass"
             android:inputType="textPassword"
             android:layout_below="@+id/signup_email"
-            android:textColor="@color/colorAccentPastel"
-            android:textColorHint="@color/colorAccentPastel" />
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent" />
 
         <EditText
             android:id="@+id/singup_password_repeat"
@@ -75,15 +75,15 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/colorAccentSecundary"
+            android:backgroundTint="@color/colorAccent"
             android:drawableLeft="@drawable/ic_pass"
             android:drawablePadding="10dp"
             android:ems="10"
             android:layout_below="@+id/singup_password"
             android:hint="@string/singup_pass_repeat"
             android:inputType="textPassword"
-            android:textColor="@color/colorAccentPastel"
-            android:textColorHint="@color/colorAccentPastel" />
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent" />
 
         <Button
             android:id="@+id/singup_btn_sing_up"
