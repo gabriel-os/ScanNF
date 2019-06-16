@@ -113,6 +113,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 srl.setRefreshing(false);
             }
         });
+        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getNotas();
+                srl.setRefreshing(false);
+            }
+        });
 
     }
 
@@ -171,7 +178,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
             if (!nota.equals("nome") && !nota.equals("ultimoCarro") && !nota.equals("diaModificado") && !nota.equals("horaModificado")) {
                 status = postSnapshot.child("status").getValue(String.class);
-                //Log.v("TESTE", status);
+
                 motivo = postSnapshot.child("motivo").getValue(String.class);
                 horario = postSnapshot.child("time").getValue(String.class);
 
