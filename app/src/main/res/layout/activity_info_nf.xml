@@ -1,197 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_info_nf"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark" />
+        android:layout_height="match_parent"
+        android:background="@color/dark">
 
-    <TextView
-        android:id="@+id/title_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_info_nf"
-        android:layout_marginTop="10dp"
-        android:text="Cadastro de notas"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        android:textSize="25sp" />
-    <TextView
-        android:id="@+id/lbl_titulo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_info"
-        android:layout_marginTop="30dp"
-        android:text="@string/num_nota_title"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="20dp" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_info_nf"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Cadastro de Notas"
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/lbl_titulo"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/txt_num_nf"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view1"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="18dp"
-        android:text="Erro"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+            android:background="@color/colorPrimaryDark" />
 
 
-
-    <TextView
-        android:id="@+id/lbl_titulo_carro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_num_nf"
-        android:layout_marginTop="20dp"
-        android:text="@string/info_nf_carro_entrega"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="20dp" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/lbl_titulo_carro"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/txt_carro_entrega"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view3"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
-        android:text="Erro"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/lbl_titulo_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_carro_entrega"
-        android:layout_marginTop="20dp"
-        android:text="@string/info_nf_status"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="20dp" />
-    <View
-        android:id="@+id/view5"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/lbl_titulo_status"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorAccent" />
-
-    <RadioGroup
-        android:id="@+id/radioStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view5"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/r_entregue"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/lbl_titulo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Entregue"
-            android:textSize="18sp"
-            android:textColor="#fff" />
+            android:layout_below="@+id/toolbar_info_nf"
+            android:layout_marginTop="15dp"
+            android:text="@string/num_nota_title"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="21sp" />
 
-        <RadioButton
-            android:id="@+id/r_cancelado"
-            android:layout_width="wrap_content"
+        <View
+            android:id="@+id/view1"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/lbl_titulo"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/txt_num_nf"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancelado"
+            android:layout_below="@id/view1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="18dp"
+            android:text="Erro"
+            android:textAlignment="center"
+            android:textColor="#fff"
             android:textSize="18sp"
-            android:textColor="#fff" />
+            android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/r_refaturado"
-            android:layout_width="wrap_content"
+
+        <TextView
+            android:id="@+id/lbl_titulo_carro"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Refaturado"
+            android:layout_below="@id/txt_num_nf"
+            android:layout_marginTop="15dp"
+            android:text="@string/info_nf_carro_entrega"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="21sp" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/lbl_titulo_carro"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/txt_carro_entrega"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view3"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Erro"
+            android:textAlignment="center"
+            android:textColor="#fff"
             android:textSize="18sp"
-            android:textColor="#fff" />
+            android:textStyle="bold" />
 
-    </RadioGroup>
+        <TextView
+            android:id="@+id/lbl_titulo_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_carro_entrega"
+            android:layout_marginTop="15dp"
+            android:text="@string/info_nf_status"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="21sp" />
 
-    <TextView
-        android:id="@+id/lbl_titulo_motivo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/radioStatus"
-        android:layout_marginTop="20dp"
-        android:text="@string/info_nf_motivo"
-        android:visibility="invisible"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="20dp" />
+        <View
+            android:id="@+id/view5"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/lbl_titulo_status"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent" />
 
-    <View
-        android:id="@+id/view6"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/lbl_titulo_motivo"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:visibility="invisible"
-        android:background="@color/colorAccent" />
+        <RadioGroup
+            android:id="@+id/radioStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view5"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
+            <RadioButton
+                android:id="@+id/r_entregue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Entregue"
+                android:textSize="15sp"
+                android:textColor="#fff" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view6"
-        android:textAlignment="center"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
-        android:visibility="invisible"
-        android:layout_marginRight="50dp"
-        android:spinnerMode="dropdown" />
+            <RadioButton
+                android:id="@+id/r_cancelado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelado"
+                android:textSize="15sp"
+                android:textColor="#fff" />
 
-    <Button
-        android:id="@+id/info_nf_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@color/colorAccent"
-        android:text="Salvar Nota"
-        android:layout_below="@id/spinner"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
-        android:textColor="#000"
-        android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/r_refaturado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Refaturado"
+                android:textSize="15sp"
+                android:textColor="#fff" />
 
-</RelativeLayout>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/lbl_titulo_motivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioStatus"
+            android:layout_marginTop="15dp"
+            android:text="@string/info_nf_motivo"
+            android:visibility="invisible"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/lbl_titulo_motivo"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            android:background="@color/colorAccent" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view6"
+            android:textAlignment="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            android:layout_marginRight="50dp"
+            android:spinnerMode="dropdown" />
+
+        <Button
+            android:id="@+id/info_nf_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorAccent"
+            android:text="Salvar Nota"
+            android:layout_below="@id/spinner"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:textColor="#000"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</ScrollView>

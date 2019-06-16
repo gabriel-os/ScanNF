@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +49,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    private SwipeRefreshLayout srl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         nvLeft = findViewById(R.id.navView);
         recyclerView = findViewById(R.id.rc_notas);
         mDrawerLayout = findViewById(R.id.drawerLayout);
+        srl = findViewById(R.id.swipe_container);
+
         setSupportActionBar(toolbar);
 
         mAuth = FirebaseAuth.getInstance();
@@ -81,8 +85,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         tvName = header.findViewById(R.id.nav_header_name);
         tvName.setText(currentUser.getDisplayName());
 
-
-
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         itemAnimator.setAddDuration(1000);
         itemAnimator.setRemoveDuration(1000);
@@ -101,6 +103,14 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 openReader();
+            }
+        });
+
+        srl.post(new Runnable() {
+            @Override
+            public void run() {
+                getNotas();
+                srl.setRefreshing(false);
             }
         });
 
@@ -127,11 +137,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public void showResult(final String nf, final String type) {
         Log.v("***", nf);
         Log.v("***", type);
-        if (!type.equals("CODE_128")) {
+        if (!type.equals("CODE_128") || nf.length() != 44) {
             Toast toast = Toast.makeText(this, "O código lido não parece \n ser uma Nota Fiscal(E01) Tente novamente",
                     Toast.LENGTH_LONG);
             toast.show();
         } else {
+            Log.d("TESTADOR BRENDA", nf);
             openInfoNF(nf);
         }
     }
@@ -152,20 +163,28 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         List<NotaFiscal> nf = new ArrayList<>();
         for (DataSnapshot postSnapshot : ds.getChildren()) {
             String nota, status, motivo, horario;
+            int serie = 0;
+            int acessKey = 0;
+
             nota = postSnapshot.getKey();
+
+
             if (!nota.equals("nome") && !nota.equals("ultimoCarro") && !nota.equals("diaModificado") && !nota.equals("horaModificado")) {
                 status = postSnapshot.child("status").getValue(String.class);
                 //Log.v("TESTE", status);
                 motivo = postSnapshot.child("motivo").getValue(String.class);
                 horario = postSnapshot.child("time").getValue(String.class);
+
                 nf.add(new NotaFiscal(nota, status, motivo, horario));
             }
         }
 
         recyclerView.setAdapter(new NossoAdapter(nf, this));
+
     }
 
     public void getNotas() {
+        srl.setRefreshing(true);
         List<NotaFiscal> nota = new ArrayList<>();
         String uid = mAuth.getCurrentUser().getUid();
         Query query;
@@ -184,7 +203,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-
+        srl.setRefreshing(false);
     }
 
     @Override

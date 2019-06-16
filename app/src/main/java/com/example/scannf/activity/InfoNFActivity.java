@@ -100,10 +100,10 @@ public class InfoNFActivity extends AppCompatActivity {
 
         }
         numNf = extras.getString("num_nf");
-        txtNumNF.setText(numNf);
+
+        txtNumNF.setText(shortNF(numNf));
 
         adviceRead();
-
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,6 +238,16 @@ public class InfoNFActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public String shortNF(String nf) {
+        String nota;
+        int serie, acessKey;
+        serie = Integer.parseInt(nf.substring(22, 25));
+        acessKey = Integer.parseInt(nf.substring(25, 34));
+
+        nota = String.valueOf(acessKey) + " - " + String.valueOf(serie);
+        return nota;
     }
 
 }

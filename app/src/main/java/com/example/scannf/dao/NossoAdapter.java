@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,22 +36,23 @@ public class NossoAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         NossoViewHolder holder = (NossoViewHolder) viewHolder;
-        final String teste;
         NotaFiscal nota = nf.get(i);
+
         final NotaFiscal nt = nota;
 
-        holder.numNf.setText(nota.getNumeroNota());
+        holder.fullName.setText(nota.getNumeroNota());
+        holder.numNf.setText(shortNF(nota.getNumeroNota()));
         holder.status.setText(nota.getStatus());
         holder.motivo.setText(nota.getMotivo());
         holder.horario.setText(nota.getHorario());
-        teste = (String) holder.horario.getText();
+
         holder.btn_line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String num_nf = nt.getNumeroNota();
+                String n = nt.getNumeroNota();
                 String status = nt.getStatus();
                 String motivo = nt.getMotivo();
-                editNota(num_nf, status, motivo);
+                editNota(n, status, motivo);
             }
         });
     }
@@ -61,6 +63,7 @@ public class NossoAdapter extends RecyclerView.Adapter {
     }
 
     public void editNota(String num_nf, String status, String motivo) {
+        Log.e("Batata", num_nf);
         Intent i = new Intent(context, InfoNFActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         i.putExtra("edit", "true");
@@ -68,6 +71,16 @@ public class NossoAdapter extends RecyclerView.Adapter {
         i.putExtra("status", status);
         i.putExtra("motivo", motivo);
         context.startActivity(i);
+    }
+
+    public String shortNF(String nf) {
+        String nota;
+        int serie, acessKey;
+        serie = Integer.parseInt(nf.substring(22, 25));
+        acessKey = Integer.parseInt(nf.substring(25, 34));
+
+        nota = String.valueOf(acessKey) + " - " + String.valueOf(serie);
+        return nota;
     }
 
 }

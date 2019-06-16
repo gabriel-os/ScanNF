@@ -22,7 +22,6 @@
         android:background="@color/colorAccent"
         android:textColor="@color/black"
         android:textStyle="bold"
-
         android:text="@string/turn_off_flashlight" />
 
 </RelativeLayout>

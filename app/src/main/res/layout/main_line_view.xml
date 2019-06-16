@@ -5,8 +5,8 @@
 
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     android:orientation="vertical">
 
     <View
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:paddingLeft="2dp"
             android:text="Nota Nº"
             android:textColor="@color/black"
@@ -43,8 +43,22 @@
             android:paddingLeft="2dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            tools:text="Line 1" />
+
+        <TextView
+            android:id="@+id/nf"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="2dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
             tools:text="Line 1" />
 
         <ImageButton
@@ -53,7 +67,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="12dp"
-            android:background="#eee"
+            android:background="@color/colorAccent"
             android:src="@drawable/ic_pencil" />
     </LinearLayout>
 
@@ -61,6 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:columnCount="3"
+        android:background="@drawable/border_line"
         android:rowCount="2">
 
         <TextView
@@ -69,8 +84,9 @@
             android:layout_height="20dp"
             android:layout_columnWeight="1"
             android:gravity="center"
+            android:textAlignment="center"
             android:text="Status"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -80,8 +96,9 @@
             android:layout_height="20dp"
             android:layout_columnWeight="1"
             android:gravity="center"
+            android:textAlignment="center"
             android:text="Motivo"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -91,8 +108,9 @@
             android:layout_height="20dp"
             android:layout_columnWeight="1"
             android:gravity="center"
+            android:textAlignment="center"
             android:text="Horário"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -101,8 +119,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_columnWeight="1"
+            android:textAlignment="center"
             android:gravity="center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/black"
             tools:text="Line 2" />
 
         <TextView
@@ -110,8 +129,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_columnWeight="1"
+            android:textAlignment="center"
             android:gravity="center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/black"
             tools:text="Line 3" />
 
         <TextView
@@ -119,8 +139,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_columnWeight="1"
+            android:textAlignment="center"
             android:gravity="center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/black"
             tools:text="Line  3" />
 
     </GridLayout>

@@ -13,6 +13,7 @@ public class NossoViewHolder extends RecyclerView.ViewHolder {
     final TextView status;
     final TextView motivo;
     final TextView horario;
+    final TextView fullName;
     final ImageButton btn_line;
 
     public NossoViewHolder(@NonNull View itemView) {
@@ -22,6 +23,7 @@ public class NossoViewHolder extends RecyclerView.ViewHolder {
         motivo = itemView.findViewById(R.id.line_reason);
         horario = itemView.findViewById(R.id.line_hour);
         btn_line = itemView.findViewById(R.id.btn_nf);
+        fullName = itemView.findViewById(R.id.nf);
     }
 
 }
